@@ -1,1 +1,14 @@
 # jwt
+### Microsoft.AspNetCore.Authentication.JwtBearer
+### Microsoft.AspNetCore.Authentication.OpenIdConnect
+### Microsoft.AspNetCore.Identity.EntityFrameworkCore
+### Microsoft.AspNetCore.Identity.UI
+### Microsoft.AspNetCore.OpenApi
+### Microsoft.EntityFrameworkCore
+### Microsoft.EntityFrameworkCore.Design
+### Microsoft.EntityFrameworkCore.SqlServer
+### Microsoft.EntityFrameworkCore.Tools
+### Microsoft.Identity.Web
+### Microsoft.VisualStudio.Web.CodeGeneration.Design
+### Swashbuckle.AspNetCore
+### System.IdentityModel.Tokens.Jwt
