@@ -1,6 +1,7 @@
 # jwt
 
 ## يجب اجراء التعديلات التالية لانشاء مشروع يتوافق مع تقنية JWT
+### نسخ ملف الكنترول الى الى البرنامج 
 ### اضافة المكتبات التالية
 ##### Microsoft.AspNetCore.Authentication.JwtBearer
 ##### Microsoft.AspNetCore.Authentication.OpenIdConnect
