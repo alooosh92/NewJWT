@@ -1,7 +1,6 @@
 # jwt
 
-## يجب اجراء التعديلات التالية لانشاء مشروع يتوافق مع تقنية JWT
-### نسخ ملف الكنترول الى الى البرنامج 
+## يجب اجراء التعديلات التالية لانشاء مشروع يتوافق مع تقنية JWT  
 ### اضافة المكتبات التالية
 ##### Microsoft.AspNetCore.Authentication.JwtBearer
 ##### Microsoft.AspNetCore.Authentication.OpenIdConnect
@@ -16,6 +15,8 @@
 ##### Microsoft.VisualStudio.Web.CodeGeneration.Design
 ##### Swashbuckle.AspNetCore
 ##### System.IdentityModel.Tokens.Jwt
+
+### نسخ ملف AuthenticationController الى البرنامج
 ### يجب اضافة المعلومات الايميل و التوغين في ملف  appsettings.cs
 #####  //JWT code
 #####  "ConnectionStrings": {
