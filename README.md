@@ -43,7 +43,7 @@
 ##### await Seed.AddRoll(app.Services, new List<string> { "User", "Admin", "Employee" });   //Add this line to add rolles 
 ##### await Seed.AddAdmin(app.Services, builder.Configuration["EmailSender:UserName"]!);    //Add this line to add admin user
 
-### خامساً: اضف جدول refreshToken to applicationDbContex
+### خامساً: اضف جدول refreshToken إلى applicationDbContex
 
 ## ملاحظات
 #### لحماية الكنترول من الدخول غير المصرح نضع  [Authorize(AuthenticationSchemes = "Bearer")]
