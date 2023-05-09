@@ -13,6 +13,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace jwt
 {
@@ -343,9 +344,55 @@ namespace jwt
         }
     }
 
-    //AddDatabaseItem
-    public class AddDatabaseItem
+    //Seed
+    public class Seed
     {
+        public static void Setting(WebApplicationBuilder builder)
+        {
+            builder.Services.Configure<JWTValues>(builder.Configuration.GetSection("JWT"));
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(opt => {
+                opt.RequireHttpsMetadata = false;
+                opt.SaveToken = false;
+                opt.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidIssuer = builder.Configuration["JWT:Issuer"],
+                    ValidAudience = builder.Configuration["JWT:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]!))
+                };
+            });
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>(opt =>
+            {
+                //SingIn
+                opt.SignIn.RequireConfirmedEmail = false;
+                opt.SignIn.RequireConfirmedPhoneNumber = false;
+                opt.SignIn.RequireConfirmedAccount = false;
+                //Password
+                opt.Password.RequireDigit = false;
+                opt.Password.RequiredLength = 6;
+                opt.Password.RequiredUniqueChars = 0;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequireUppercase = false;
+                opt.Password.RequireLowercase = false;
+            }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+            builder.Services.AddTransient<IAuthServies, AuthServies>();
+            builder.Services.AddTransient<IEmailSender, EmailSender>(a =>
+                          new EmailSender(
+                              builder.Configuration["EmailSender:Host"]!,
+                              builder.Configuration.GetValue<int>("EmailSender:Port"),
+                              builder.Configuration.GetValue<bool>("EmailSender:EnableSSL"),
+                              builder.Configuration["EmailSender:UserName"]!,
+                              builder.Configuration["EmailSender:Password"]!
+                          )
+                      );
+        }
         public static async Task AddRoll(IServiceProvider provider, List<string> roles)
         {
             var scopFactory = provider.GetRequiredService<IServiceScopeFactory>();
