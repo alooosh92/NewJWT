@@ -6,6 +6,7 @@
 ##### Microsoft.AspNetCore.Identity.EntityFrameworkCore
 ##### Microsoft.AspNetCore.Identity.UI
 ##### Microsoft.EntityFrameworkCore.SqlServer
+##### Microsoft.EntityFrameworkCore.Tools
 
 ### ثانياً: انسخ الملف التالي AuthenticationController الى مجلد Controllers
 
